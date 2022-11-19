@@ -1,0 +1,6 @@
+starting with most basic HTML5 best practice empty starter page, add React little by litte.
+
+01basic.html - just minimum, best-practice HTML
+
+02likebutton.html - one very simple React component added
+
