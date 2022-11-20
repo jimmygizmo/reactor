@@ -1,4 +1,4 @@
-starting with most basic HTML5 best practice empty starter page, add React little by litte.
+starting with most basic HTML5 best practice empty starter page, add React little by little.
 
 01basic.html - just minimum, best-practice HTML
 

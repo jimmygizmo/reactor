@@ -1,0 +1,41 @@
+https://imranhsayed.medium.com/set-up-react-app-with-webpack-webpack-dev-server-and-babel-from-scratch-df398174446d
+
+1. we want our own package.json in this dir
+npm init --yes
+
+* This init process seems to have picked 01reactdom.js as our main. Not sure how it chooses but its a decent choice.
+
+2. Install Babel
+   Let's install babel and the required presets and plugins.
+   npm i -D @babel/preset-react @babel/preset-env @babel/core babel-loader @babel/plugin-proposal-class-properties
+
+3. Create a babel config file .babelrc
+
+4. Install Webpack and Webpack Dev Server
+   npm i -D webpack webpack-cli webpack-dev-server html-webpack-plugin path
+
+5. Create basic dirs and files needed:
+   mkdir src public
+   touch src/index.js src/App.js public/index.html
+
+JUST FOR INTEREST, This is the package.json created by npm init:
+{
+  "name": "04reactdom",
+  "version": "1.0.0",
+  "description": "",
+  "main": "01reactdom.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
+
+
+** We could rename 01reactdom.js to index.js and move in into a src .. but really, I'm not gonna do all this
+manual setup. Good to see the basics of what CRA does, but will just use CRA now.
+
+* Removing package.json created by npm init. Will now follow CRA steps from offical doc.
+Will do this inside: /05cra
+

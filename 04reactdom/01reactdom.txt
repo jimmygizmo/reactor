@@ -1,0 +1,21 @@
+
+From fucntional components which is also covered in /03classvsfunc
+https://www.geeksforgeeks.org/reactjs-functional-components/
+
+https://reactjs.org/docs/react-dom.html
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Demo from './App';
+
+ReactDOM.render(
+  <React.StrictMode>
+    <Demo />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+
+
+
+
+

@@ -1,0 +1,27 @@
+https://create-react-app.dev
+
+npx create-react-app mycra
+
+Creating a new React app in /Users/bilbo/GITREPOS/reactor/05cra/mycra.
+Installing react, react-dom, and react-scripts with cra-template...
+--------
+  npm start
+    Starts the development server.
+
+  npm run build
+    Bundles the app into static files for production.
+
+  npm test
+    Starts the test runner.
+
+  npm run eject
+    Removes this tool and copies build dependencies, configuration files
+    and scripts into the app directory. If you do this, you can’t go back!
+--------
+
+UPGRADE occasionally:
+npm install react-scripts@latest
+
+---------
+
+
