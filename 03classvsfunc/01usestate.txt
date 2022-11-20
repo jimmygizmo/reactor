@@ -1,7 +1,0 @@
-Many examples were too small to put in files, but are annotated in:
-react-comp-class-vs-func.txt
-
-01usestate.js is the first one of about 4-6 small ones that I actually put in a file.
-Still following:
-https://www.geeksforgeeks.org/reactjs-functional-components/
-
