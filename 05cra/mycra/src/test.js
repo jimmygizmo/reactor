@@ -1,15 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import Map from './Map';
 
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
+const testroot = ReactDOM.createRoot(document.getElementById('testroot'));
+testroot.render(
   <React.StrictMode>
-    <App />
-    <br />
     <Map />
   </React.StrictMode>
 );

@@ -11,6 +11,14 @@ function App() {
         </p>
         <a
           className="App-link"
+          href="/test.html"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Test
+        </a>
+        <a
+          className="App-link"
           href="https://reactjs.org"
           target="_blank"
           rel="noopener noreferrer"
