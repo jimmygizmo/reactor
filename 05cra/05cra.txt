@@ -24,4 +24,10 @@ npm install react-scripts@latest
 
 ---------
 
+This CRA will now be used in following this 5 our React Interview Prep course from freeCodeCamp.org:
+https://www.youtube.com/watch?v=XBTJDpT2XaI
+
+If this CRA gets too cluttered, more CRAs will be created in this repo to keep this cleanly organized.
+
+
 

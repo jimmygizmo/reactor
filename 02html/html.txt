@@ -1,6 +1,18 @@
+https://reactjs.org/docs/add-react-to-a-website.html
+
 starting with most basic HTML5 best practice empty starter page, add React little by little.
 
 01basic.html - just minimum, best-practice HTML
 
 02likebutton.html - one very simple React component added
+
+UPDATE: The above tut is for adding react to a website and the steps are not going to be
+commonly used. More like will be use of CRA, so lets skip to work and notes and tuts inside of:
+/05cra
+
+And:
+https://create-react-app.dev
+
+Then go from here. Pick up on next logical official ReactJS tut. No more random web tuts.
+Too often out-dated.
 
