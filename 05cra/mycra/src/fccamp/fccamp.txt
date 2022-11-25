@@ -1,0 +1,18 @@
+Most work in this CRA project (05cra, inside repo 'reactor') will likely be a combination of the
+basic React Router quick start here:
+https://reactrouter.com/en/main/start/tutorial
+
+And this 5 hour React Coding Interview Prep course here:
+
+https://www.youtube.com/watch?v=XBTJDpT2XaI
+-------------------------------------------
+
+It is another good one from freeCodeCamp/org, hence the dir name: fccamp
+
+(work done from video and with lots of custom changes along the way. this is not pasted source.)
+
+CONCEPT: Learn more about React Router while using it to organize the separate steps and lessons of this long
+tutorial. Alongn the way, other experiments and tutorial components will likely be included.
+As said before, if anything gets to be too much for this CRA, a fresh CRA will be started in this 'reactor'
+repo. I will try to group similar concepts, frameworks and complexity levels in an organized manner.
+
