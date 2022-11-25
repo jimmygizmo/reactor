@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom/client';
 
 import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
 
-import './index.css';
+// import './index.css';
+import './routerex/contacts.css';  // For react-router experiment
 
 
 // PLAN: Follow react-router quick start, which is a bit different from the CRA

@@ -1,3 +1,14 @@
+// PLAN: Follow react-router quick start, which is a bit different from the CRA
+// I am starting with. But I will adapt all code. They use Vite and some other stuff.
+// I want to just add minimal React Router to this standard CRA format. Their
+// entrypoint is main.jsx. I want to try a slightly different approach just to try it.
+// https://reactrouter.com/en/main/start/tutorial
+-------------------------------------------------------------
+// UPDATE: The earlier goal, stated at the end of this file, will come AFTER the above one
+// and might likely be a separate app unless it makes perfect sense to continue adding pages
+// using router to further that experiment.
+------------------------------------------------
+
 https://create-react-app.dev
 
 npx create-react-app mycra
@@ -24,7 +35,7 @@ npm install react-scripts@latest
 
 ---------
 
-This CRA will now be used in following this 5 our React Interview Prep course from freeCodeCamp.org:
+This CRA will now be used in following this 5 hour React Interview Prep course from freeCodeCamp.org:
 https://www.youtube.com/watch?v=XBTJDpT2XaI
 
 If this CRA gets too cluttered, more CRAs will be created in this repo to keep this cleanly organized.
