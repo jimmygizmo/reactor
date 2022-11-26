@@ -1,11 +1,15 @@
-import { Outlet, Link, useLoaderData } from 'react-router-dom'
-import { getContacts } from '../routerex/contacts.js'
+import { Outlet, Link, useLoaderData, Form } from 'react-router-dom'
+import { getContacts, createContact } from '../routerex/contacts.js'
 
 
 // This LOADER is imported in index.jsx, where this Root component is referenced.
 export async function loader() {
   const contacts = await getContacts();
   return { contacts };
+}
+
+export async function action() {
+  await createContact();
 }
 
 
@@ -35,9 +39,9 @@ const Root = () => {
               aria-live="polite"
             ></div>
           </form>
-          <form method="post">
+          <Form method="post">
             <button type="submit">New</button>
-          </form>
+          </Form>
         </div>
         <nav>
           { contacts.length ? (

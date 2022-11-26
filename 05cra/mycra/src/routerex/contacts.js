@@ -2,6 +2,14 @@ import localforage from "localforage";
 import { matchSorter } from "match-sorter";
 import sortBy from "sort-by";
 
+
+// IndexDB on MDN:
+// https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API
+// localForage:
+// https://github.com/localForage/localForage
+// https://blog.teamtreehouse.com/using-localforage-offline-data-storage
+
+
 export async function getContacts(query) {
   await fakeNetwork(`getContacts:${query}`);
   let contacts = await localforage.getItem("contacts");
