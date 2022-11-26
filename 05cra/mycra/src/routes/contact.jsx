@@ -1,49 +1,47 @@
-import { Form } from "react-router-dom";
+import { Form, useLoaderData } from "react-router-dom";
+import { getContact } from '../routerex/contacts.js';
+
+export async function loader({ params }) {
+  return getContact( params.contactId );
+}
 
 export default function Contact() {
-  const contact = {
-    first: "Your",
-    last: "Name",
-    avatar: "https://placekitten.com/g/200/200",
-    twitter: "your_handle",
-    notes: "Some notes",
-    favorite: true,
-  };
+  const contact = useLoaderData();
 
   return (
     <div id="contact">
       <div>
         <img
-          key={contact.avatar}
-          src={contact.avatar || null}
+          key={ contact.avatar }
+          src={ contact.avatar || null }
           alt='avatar'/>
       </div>
 
       <div>
         <h1>
-          {contact.first || contact.last ? (
+          { contact.first || contact.last ? (
             <>
-              {contact.first} {contact.last}
+              { contact.first } { contact.last }
             </>
           ) : (
             <i>No Name</i>
           )}{" "}
-          <Favorite contact={contact} />
+          <Favorite contact={ contact } />
         </h1>
 
-        {contact.twitter && (
+        { contact.twitter && (
           <p>
             <a
               target="_blank"
               rel="noreferrer"
-              href={`https://twitter.com/${contact.twitter}`}
+              href={`https://twitter.com/${ contact.twitter }`}
             >
-              {contact.twitter}
+              { contact.twitter }
             </a>
           </p>
         )}
 
-        {contact.notes && <p>{contact.notes}</p>}
+        { contact.notes && <p>{contact.notes }</p>}
 
         <div>
           <Form action="edit">
@@ -52,7 +50,7 @@ export default function Contact() {
           <Form
             method="post"
             action="destroy"
-            onSubmit={(event) => {
+            onSubmit={ (event) => {
               if (
                 !window.confirm(
                   "Please confirm you want to delete this record."
@@ -77,16 +75,28 @@ function Favorite({ contact }) {
     <Form method="post">
       <button
         name="favorite"
-        value={favorite ? "false" : "true"}
+        value={ favorite ? "false" : "true" }
         aria-label={
           favorite
             ? "Remove from favorites"
             : "Add to favorites"
         }
       >
-        {favorite ? "★" : "☆"}
+        { favorite ? "★" : "☆" }
       </button>
     </Form>
   );
 }
+
+// Fake contact data removed from top of Contact()
+//
+// const contact = {
+//   first: "Your",
+//   last: "Name",
+//   avatar: "https://placekitten.com/g/200/200",
+//   twitter: "your_handle",
+//   notes: "Some notes",
+//   favorite: true,
+// };
+//
 

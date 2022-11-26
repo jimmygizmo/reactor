@@ -8,7 +8,7 @@ import { createBrowserRouter, RouterProvider, Route, } from 'react-router-dom';
 import Root, { loader as rootLoader, action as rootAction } from './routes/root.jsx';
 import './routerex/contacts.css';
 import ErrorPage from './routes/error-page.jsx';
-import Contact from './routes/contact.jsx';
+import Contact, { loader as contactLoader } from './routes/contact.jsx';
 import Map from './fccamp/Map.js';
 
 
@@ -23,6 +23,7 @@ const router = createBrowserRouter([
       {
         path: "contacts/:contactId",
         element: <Contact />,
+        loader: contactLoader,
       },
     ],
   },
