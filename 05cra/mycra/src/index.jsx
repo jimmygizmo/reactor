@@ -9,6 +9,8 @@ import Root, { loader as rootLoader, action as rootAction } from './routes/root.
 import './routerex/contacts.css';
 import ErrorPage from './routes/error-page.jsx';
 import Contact, { loader as contactLoader } from './routes/contact.jsx';
+// Normally EditContact would import its own editLoader, but for this demo, contactLoader is re-used.
+import EditContact, { action as editAction } from './routes/edit.jsx';
 import Map from './fccamp/Map.js';
 
 
@@ -25,6 +27,12 @@ const router = createBrowserRouter([
         element: <Contact />,
         loader: contactLoader,
       },
+      {
+        path: "contacts/:contactId/edit",
+        element: <EditContact />,
+        loader: contactLoader,
+        action: editAction,
+      },
     ],
   },
   {
@@ -36,7 +44,7 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <RouterProvider router={ router } />
   </React.StrictMode>
 );
 

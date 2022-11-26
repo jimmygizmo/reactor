@@ -1,5 +1,5 @@
-import { Outlet, Link, useLoaderData, Form } from 'react-router-dom'
-import { getContacts, createContact } from '../routerex/contacts.js'
+import { Outlet, Link, useLoaderData, Form } from 'react-router-dom';
+import { getContacts, createContact } from '../routerex/contacts.js';
 
 
 // This LOADER is imported in index.jsx, where this Root component is referenced.
@@ -44,6 +44,7 @@ const Root = () => {
           </Form>
         </div>
         <nav>
+
           { contacts.length ? (
             <ul>
               { contacts.map( (contact) => (
@@ -66,6 +67,7 @@ const Root = () => {
               <i>No contacts</i>
             </p>
           )}
+
         </nav>
       </div>
       <div id="detail">
