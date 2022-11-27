@@ -11,6 +11,7 @@ import ErrorPage from './routes/error-page.jsx';
 import Contact, { loader as contactLoader } from './routes/contact.jsx';
 // Normally EditContact would import its own editLoader, but for this demo, contactLoader is re-used.
 import EditContact, { action as editAction } from './routes/edit.jsx';
+import { action as destroyAction } from './routes/destroy.jsx';
 import Map from './fccamp/Map.js';
 
 
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
         element: <EditContact />,
         loader: contactLoader,
         action: editAction,
+      },
+      {
+        path: "contacts/:contactId/destroy",
+        action: destroyAction,
       },
     ],
   },

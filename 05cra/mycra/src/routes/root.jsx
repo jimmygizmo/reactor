@@ -1,6 +1,8 @@
-import { Outlet, Link, useLoaderData, Form } from 'react-router-dom';
+import { Outlet, NavLink, useLoaderData, Form, redirect, useNavigation } from 'react-router-dom';
 import { getContacts, createContact } from '../routerex/contacts.js';
 
+// Towards end of react router contact demo: Golbal Pending UI, useNavigation hook.
+// https://reactrouter.com/en/main/hooks/use-navigation
 
 // This LOADER is imported in index.jsx, where this Root component is referenced.
 export async function loader() {
@@ -8,13 +10,23 @@ export async function loader() {
   return { contacts };
 }
 
+// So is this ACTION. index.jsx is where the router and its routes are defined.
+// index.jsx is where the callbacks to action, loader are linked up with the routes.
+// It is also where THIS root Route (specifically, Root) is referenced.
 export async function action() {
-  await createContact();
+  const contact = await createContact();
+  return redirect(`/contacts/${contact.id}/edit`);
 }
 
 
 const Root = () => {
-  const { contacts } = useLoaderData();
+  const loaderData = useLoaderData();
+  // console.log(JSON.stringify(loaderData));  // loaderData is just so we could see the full object returned.
+  // But really, we know this came from the loader() above and from getContacts(). The format is the same.
+  // CONCLUSION: useLoaderData() does not change the data returned by loader() at all.
+  // Router calls loader() during navigation of routes.
+  const { contacts } = loaderData;  // { contacts } is just destructuring.
+  const navigation = useNavigation();
 
   return(
     <>
@@ -49,7 +61,16 @@ const Root = () => {
             <ul>
               { contacts.map( (contact) => (
                 <li key={ contact.id }>
-                  <Link to={`contacts/${ contact.id }`}>
+                  <NavLink
+                    to={`contacts/${contact.id}`}
+                    className={({ isActive, isPending }) =>
+                      isActive
+                        ? "active"
+                        : isPending
+                          ? "pending"
+                          : ""
+                    }
+                  >
                     { contact.first || contact.last ? (
                       <>
                         { contact.first } { contact.last }
@@ -58,7 +79,7 @@ const Root = () => {
                       <i>No Name</i>
                     )}{" "}
                     { contact.favorite && <span>★</span>}
-                  </Link>
+                  </NavLink>
                 </li>
               ))}
             </ul>
@@ -70,7 +91,10 @@ const Root = () => {
 
         </nav>
       </div>
-      <div id="detail">
+      <div
+        id="detail"
+        className={ navigation.state === "loading" ? "loading" : "" }
+      >
         <Outlet />
       </div>
     </>
