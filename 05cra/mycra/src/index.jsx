@@ -12,6 +12,7 @@ import Contact, { loader as contactLoader } from './routes/contact.jsx';
 // Normally EditContact would import its own editLoader, but for this demo, contactLoader is re-used.
 import EditContact, { action as editAction } from './routes/edit.jsx';
 import { action as destroyAction } from './routes/destroy.jsx';
+import Index from './routes/index.jsx';
 import Map from './fccamp/Map.js';
 
 
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
     loader: rootLoader,
     action: rootAction,
     children: [
+      { index: true, element: <Index /> },
       {
         path: "contacts/:contactId",
         element: <Contact />,
@@ -36,6 +38,7 @@ const router = createBrowserRouter([
       },
       {
         path: "contacts/:contactId/destroy",
+        errorElement: <div>Oops! There was an error deleting the contact.</div>,
         action: destroyAction,
       },
     ],

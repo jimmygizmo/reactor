@@ -5,12 +5,14 @@ import { getContacts, createContact } from '../routerex/contacts.js';
 // https://reactrouter.com/en/main/hooks/use-navigation
 
 // This LOADER is imported in index.jsx, where this Root component is referenced.
-export async function loader() {
-  const contacts = await getContacts();
+export async function loader({ request }) {
+  const url = new URL(request.url);
+  const q = url.searchParams.get("q");
+  const contacts = await getContacts(q);
   return { contacts };
 }
 
-// So is this ACTION. index.jsx is where the router and its routes are defined.
+// This ACTION is imported in index.jsx, where the router and its routes are defined.
 // index.jsx is where the callbacks to action, loader are linked up with the routes.
 // It is also where THIS root Route (specifically, Root) is referenced.
 export async function action() {
@@ -33,7 +35,7 @@ const Root = () => {
       <div id="sidebar">
         <h1>React Router Contacts</h1>
         <div>
-          <form id="search-form" role="search">
+          <Form id="search-form" role="search">
             <input
               id="q"
               aria-label="Search contacts"
@@ -50,7 +52,7 @@ const Root = () => {
               className="sr-only"
               aria-live="polite"
             ></div>
-          </form>
+          </Form>
           <Form method="post">
             <button type="submit">New</button>
           </Form>
