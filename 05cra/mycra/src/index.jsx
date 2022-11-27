@@ -4,6 +4,7 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+// TODO: The import of 'Route' was listed but we don't yet use it - nearing end of tut for React Router QS.
 import { createBrowserRouter, RouterProvider, Route, } from 'react-router-dom';
 import Root, { loader as rootLoader, action as rootAction } from './routes/root.jsx';
 import './routerex/contacts.css';
