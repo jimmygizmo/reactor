@@ -9,7 +9,7 @@ import { createBrowserRouter, RouterProvider, Route, } from 'react-router-dom';
 import Root, { loader as rootLoader, action as rootAction } from './routes/root.jsx';
 import './routerex/contacts.css';
 import ErrorPage from './routes/error-page.jsx';
-import Contact, { loader as contactLoader } from './routes/contact.jsx';
+import Contact, { loader as contactLoader, action as contactAction } from './routes/contact.jsx';
 // Normally EditContact would import its own editLoader, but for this demo, contactLoader is re-used.
 import EditContact, { action as editAction } from './routes/edit.jsx';
 import { action as destroyAction } from './routes/destroy.jsx';
@@ -25,22 +25,28 @@ const router = createBrowserRouter([
     loader: rootLoader,
     action: rootAction,
     children: [
-      { index: true, element: <Index /> },
       {
-        path: "contacts/:contactId",
-        element: <Contact />,
-        loader: contactLoader,
-      },
-      {
-        path: "contacts/:contactId/edit",
-        element: <EditContact />,
-        loader: contactLoader,
-        action: editAction,
-      },
-      {
-        path: "contacts/:contactId/destroy",
-        errorElement: <div>Oops! There was an error deleting the contact.</div>,
-        action: destroyAction,
+        errorElement: <ErrorPage />,
+        children: [
+          { index: true, element: <Index /> },
+          {
+            path: "contacts/:contactId",
+            element: <Contact />,
+            loader: contactLoader,
+            action: contactAction,
+          },
+          {
+            path: "contacts/:contactId/edit",
+            element: <EditContact />,
+            loader: contactLoader,
+            action: editAction,
+          },
+          {
+            path: "contacts/:contactId/destroy",
+            errorElement: <div>Oops! There was an error deleting the contact.</div>,
+            action: destroyAction,
+          },
+        ],
       },
     ],
   },
@@ -56,4 +62,39 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <RouterProvider router={ router } />
   </React.StrictMode>
 );
+
+
+// We could create the router with JSX instead of JS, like this:
+//
+// const router = createBrowserRouter(
+//   createRoutesFromElements(
+//     <Route
+//       path="/"
+//       element={<Root />}
+//       loader={rootLoader}
+//       action={rootAction}
+//       errorElement={<ErrorPage />}
+//     >
+//       <Route errorElement={<ErrorPage />}>
+//         <Route index element={<Index />} />
+//         <Route
+//           path="contacts/:contactId"
+//           element={<Contact />}
+//           loader={contactLoader}
+//           action={contactAction}
+//         />
+//         <Route
+//           path="contacts/:contactId/edit"
+//           element={<EditContact />}
+//           loader={contactLoader}
+//           action={editAction}
+//         />
+//         <Route
+//           path="contacts/:contactId/destroy"
+//           action={destroyAction}
+//         />
+//       </Route>
+//     </Route>
+//   )
+// );
 

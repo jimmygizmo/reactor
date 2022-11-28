@@ -1,8 +1,22 @@
-import { Form, useLoaderData } from "react-router-dom";
-import { getContact } from '../routerex/contacts.js';
+import { Form, useLoaderData, useFetcher } from "react-router-dom";
+import { getContact, updateContact } from '../routerex/contacts.js';
 
 export async function loader({ params }) {
-  return getContact( params.contactId );
+  const contact = await getContact( params.contactId );
+  if (!contact) {
+    throw new Response("", {
+      status: 404,
+      statusText: "Not Found",
+    });
+  }
+  return contact;
+}
+
+export async function action({ request, params }) {
+  let formData = await request.formData();
+  return(
+    updateContact(params.contactId, { favorite: formData.get("favorite") === "true" })
+  );
 }
 
 export default function Contact() {
@@ -68,11 +82,21 @@ export default function Contact() {
   );
 }
 
+// IMPORTANT: In any Form, method="post" will call the action()  (applies to fetcher.Form as well)
 function Favorite({ contact }) {
-  // yes, this is a `let` for later
+  const fetcher = useFetcher();
+  // yes, this is a `let` for later .. later meaning now when we add some Optimistic UI.
   let favorite = contact.favorite;
+  // Optimistic UI: The fetcher knows the form data being submitted to the action, so it's available
+  // to you on fetcher.formData. We'll use that to immediately update the star's state, even though
+  // the network hasn't finished. If the update eventually fails, the UI will revert to the real data.
+  if (fetcher.formData) {
+    favorite = fetcher.formData.get("favorite") === "true";
+  }
+
+
   return (
-    <Form method="post">
+    <fetcher.Form method="post">
       <button
         name="favorite"
         value={ favorite ? "false" : "true" }
@@ -84,7 +108,7 @@ function Favorite({ contact }) {
       >
         { favorite ? "★" : "☆" }
       </button>
-    </Form>
+    </fetcher.Form>
   );
 }
 
