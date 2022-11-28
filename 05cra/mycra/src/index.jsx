@@ -4,57 +4,103 @@
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-// TODO: The import of 'Route' was listed but we don't yet use it - nearing end of tut for React Router QS.
-import { createBrowserRouter, RouterProvider, Route, } from 'react-router-dom';
+import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route, } from 'react-router-dom';
 import Root, { loader as rootLoader, action as rootAction } from './routes/root.jsx';
 import './routerex/contacts.css';
 import ErrorPage from './routes/error-page.jsx';
 import Contact, { loader as contactLoader, action as contactAction } from './routes/contact.jsx';
-// Normally EditContact would import its own editLoader, but for this demo, contactLoader is re-used.
-import EditContact, { action as editAction } from './routes/edit.jsx';
+import EditContact, { action as editAction } from './routes/edit.jsx';  // no loader since it re-uses contactLoader
 import { action as destroyAction } from './routes/destroy.jsx';
 import Index from './routes/index.jsx';
 import Map from './fccamp/Map.js';
 
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    element: <Root />,
-    errorElement: <ErrorPage />,
-    loader: rootLoader,
-    action: rootAction,
-    children: [
-      {
-        errorElement: <ErrorPage />,
-        children: [
-          { index: true, element: <Index /> },
-          {
-            path: "contacts/:contactId",
-            element: <Contact />,
-            loader: contactLoader,
-            action: contactAction,
-          },
-          {
-            path: "contacts/:contactId/edit",
-            element: <EditContact />,
-            loader: contactLoader,
-            action: editAction,
-          },
-          {
-            path: "contacts/:contactId/destroy",
-            errorElement: <div>Oops! There was an error deleting the contact.</div>,
-            action: destroyAction,
-          },
-        ],
-      },
-    ],
-  },
-  {
-    path: '/map',
-    element: <Map />,
-  },
-]);
+const router = createBrowserRouter(
+  createRoutesFromElements(
+    <>
+      <Route
+        path="/"
+        element={<Root />}
+        loader={rootLoader}
+        action={rootAction}
+        errorElement={<ErrorPage />}
+      >
+        <Route
+          errorElement={<ErrorPage />}
+        >
+          <Route
+            index="true"
+            element={<Index />}
+          />
+          <Route
+          path="contacts/:contactId"
+          element={<Contact />}
+          loader={contactLoader}
+          action={contactAction}
+          />
+          <Route
+            path="contacts/:contactId/edit"
+            element={<EditContact />}
+            loader={contactLoader}
+            action={editAction}
+          />
+          <Route
+            path="contacts/:contactId/destroy"
+            action={destroyAction}
+            errorElement={<div>Oops! There was an error deleting the contact.</div>}
+          />
+        </Route>
+      </Route>
+      <Route
+        path="/map"
+        element={<Map />}
+      />
+    </>
+  )
+);
+
+
+// ROUTER JS OBJECT CONFIG METHOD. This is the exact same configuration as above, done with JSX.
+// This requires 2 less imports. The above JSX method requires imports of: createRoutesFromElements and Route.
+// NOTE: We have two Routes at the top level here, so in JSX we need to wrap them with <></> in the typical manner.
+// const router2 = createBrowserRouter([
+//   {
+//     path: '/',
+//     element: <Root />,
+//     loader: rootLoader,
+//     action: rootAction,
+//     errorElement: <ErrorPage />,
+//     children: [
+//       {
+//         errorElement: <ErrorPage />,
+//         children: [
+//           { index: true, element: <Index /> },
+//           {
+//             path: "contacts/:contactId",
+//             element: <Contact />,
+//             loader: contactLoader,
+//             action: contactAction,
+//           },
+//           {
+//             path: "contacts/:contactId/edit",
+//             element: <EditContact />,
+//             loader: contactLoader,
+//             action: editAction,
+//           },
+//           {
+//             path: "contacts/:contactId/destroy",
+//             action: destroyAction,
+//             errorElement: <div>Oops! There was an error deleting the contact.</div>,
+//           },
+//         ],
+//       },
+//     ],
+//   },
+//   {
+//     path: '/map',
+//     element: <Map />,
+//   },
+// ]);
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
