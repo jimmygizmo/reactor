@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Outlet, NavLink, useLoaderData, Form, redirect, useNavigation } from 'react-router-dom';
+import { Outlet, NavLink, useLoaderData, Form, redirect, useNavigation, useSubmit } from 'react-router-dom';
 import { getContacts, createContact } from '../routerex/contacts.js';
 
 // Towards end of react router contact demo: Golbal Pending UI, useNavigation hook.
@@ -53,6 +53,13 @@ const Root = () => {
   //   We might say; Elements of Routes (routes) call useLoaderData when rendering.
   const { contacts, q } = loaderData;  // { contacts, q } is just destructuring. Also, FIXED: q added for URL syncing.
   const navigation = useNavigation();
+  const submit = useSubmit();
+
+  const searching =
+    // navigation.location is only present DURING navigation and goes away when there is no pending navigation anymore.
+    navigation.location &&
+    // MDN - Utility method: https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams
+    new URLSearchParams(navigation.location.search).has("q");
 
   useEffect(() => {
       // Set the value of the search input field. Runs when this Component mounts, updates (or will-unmount?)
@@ -70,16 +77,23 @@ const Root = () => {
           <Form id="search-form" role="search">
             <input
               id="q"
+              className={ searching ? "loading" : "" }
               aria-label="Search contacts"
               placeholder="Search"
               type="search"
               name="q"
               defaultValue={q}
+              onChange={ (event) => {
+                const isFirstSearch = q == null;
+                submit(event.currentTarget.form, {
+                  replace: !isFirstSearch,
+                });
+              }}
             />
             <div
               id="search-spinner"
               aria-hidden
-              hidden={true}
+              hidden={ !searching }
             />
             <div
               className="sr-only"
