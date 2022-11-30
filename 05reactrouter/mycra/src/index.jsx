@@ -60,6 +60,13 @@ const router = createBrowserRouter(
 );
 
 
+ReactDOM.createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <RouterProvider router={ router } />
+  </React.StrictMode>
+);
+
+
 // ROUTER JS OBJECT CONFIG METHOD. This is the exact same configuration as above, done with JSX.
 // This requires 2 less imports. The above JSX method requires imports of: createRoutesFromElements and Route.
 // NOTE: We have two Routes at the top level here, so in JSX we need to wrap them with <></> in the typical manner.
@@ -101,46 +108,4 @@ const router = createBrowserRouter(
 //     element: <Map />,
 //   },
 // ]);
-
-
-ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <RouterProvider router={ router } />
-  </React.StrictMode>
-);
-
-
-// We could create the router with JSX instead of JS, like this:
-//
-// const router = createBrowserRouter(
-//   createRoutesFromElements(
-//     <Route
-//       path="/"
-//       element={<Root />}
-//       loader={rootLoader}
-//       action={rootAction}
-//       errorElement={<ErrorPage />}
-//     >
-//       <Route errorElement={<ErrorPage />}>
-//         <Route index element={<Index />} />
-//         <Route
-//           path="contacts/:contactId"
-//           element={<Contact />}
-//           loader={contactLoader}
-//           action={contactAction}
-//         />
-//         <Route
-//           path="contacts/:contactId/edit"
-//           element={<EditContact />}
-//           loader={contactLoader}
-//           action={editAction}
-//         />
-//         <Route
-//           path="contacts/:contactId/destroy"
-//           action={destroyAction}
-//         />
-//       </Route>
-//     </Route>
-//   )
-// );
 
