@@ -1,0 +1,27 @@
+
+import React, { useState } from 'react';
+import './index.css';
+
+
+function UseEffectBasic() {
+  const [resourceType, setResourceType] = useState('posts');
+
+  return (
+    <>
+      <div className="container">
+        <h2>UseEffectBasic</h2>
+        <hr />
+        <br />
+        <div>
+        <button onClick={() => setResourceType('posts')}>Posts</button>
+        <button onClick={() => setResourceType('users')}>Users</button>
+        <button onClick={() => setResourceType('comments')}>Comments</button>
+        </div>
+        <h1>{resourceType}</h1>
+      </div>
+    </>
+  );
+}
+
+export default UseEffectBasic;
+
