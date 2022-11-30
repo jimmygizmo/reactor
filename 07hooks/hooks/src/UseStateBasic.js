@@ -4,6 +4,7 @@ import './index.css';
 
 
 function UseStateBasic() {
+  // const [stateVariable, updaterFunction] = useState(initialValue);  // Example.
   const [resourceType, setResourceType] = useState('x');
 
   return (
@@ -13,11 +14,10 @@ function UseStateBasic() {
         <hr />
         <br />
         <div>
-        <button onClick={() => setResourceType('x')}>x</button>
-        <button onClick={() => setResourceType('y')}>y</button>
-        <button onClick={() => setResourceType('z')}>z</button>
+        <button>-</button>
+        <span>0</span>
+        <button>+</button>
         </div>
-        <h1>to be or not to be</h1>
       </div>
     </>
   );

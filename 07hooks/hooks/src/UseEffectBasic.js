@@ -4,6 +4,7 @@ import './index.css';
 
 
 function UseEffectBasic() {
+  // const [stateVariable, updaterFunction] = useState(initialValue);  // Example.
   const [resourceType, setResourceType] = useState('posts');
 
   return (
