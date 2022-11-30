@@ -13,7 +13,7 @@ https://create-react-app.dev
 
 npx create-react-app mycra
 
-Creating a new React app in /Users/bilbo/GITREPOS/reactor/05cra/mycra.
+Creating a new React app in /Users/bilbo/GITREPOS/reactor/05reactrouter/mycra.
 Installing react, react-dom, and react-scripts with cra-template...
 --------
   npm start
