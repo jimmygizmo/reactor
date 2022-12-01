@@ -1,0 +1,8 @@
+
+https://stackoverflow.com/questions/48846289/why-is-my-react-component-is-rendering-twice
+
+https://reactjs.org/docs/strict-mode.html#detecting-unexpected-side-effects
+
+Helps to explain the double rendering. It only happens in dev mode and only happens in React strict mode.
+It helps to detect unintended side effects.
+
