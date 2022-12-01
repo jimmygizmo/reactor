@@ -6,7 +6,9 @@ import './index.css';
 // import UseStateObject from './UseStateObject';
 // import UseStateMulti from './UseStateMulti';
 // import UseEffectBasic from './UseEffectBasic';
-import UseEffectRestBasic from './UseEffectRestBasic';
+// import UseEffectRestBasic from './UseEffectRestBasic';
+// import UseEffectWindow from './UseEffectWindow';
+import UseMemoBasic from './UseMemoBasic';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -16,7 +18,9 @@ root.render(
     {/*<UseStateObject />*/}
     {/*<UseStateMulti />*/}
     {/*<UseEffectBasic />*/}
-    <UseEffectRestBasic />
+    {/*<UseEffectRestBasic />*/}
+    {/*<UseEffectWindow />*/}
+    <UseMemoBasic />
   </React.StrictMode>
 );
 

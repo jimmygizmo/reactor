@@ -38,11 +38,11 @@ function UseStateBasic() {
     setCount(prevCount => prevCount - 1);  // Anonymous function which takes the previous value.
     // I guess the assumption is that internally, useState will call this with the PREVIOUS VALUE.
     // To me that is critical and clear, but the tutorial doesn't even really mention this point.
-    // React docs hardly touch on updating at all. TODO: Find a good reference about the details of
-    // how useState updates the value.
+    // React docs hardly touch on updating at all.
+    // TODO: Find a good reference about the details of how useState updates the value.
     // UPDATE: Kyle said "another version of this function allows you to pass a function instead of
     // a value. This does clarify. So this update-function provided by useState is overloaded and has
-    // at least two signatures, one accepts a value and one accepts an anoymous function. Maybe we
+    // at least two signatures, one accepts a value and one accepts an anonymous function. Maybe we
     // could say that one accepts an object and one accepts just any function. I'm not sure.
     // Anyhow, point is, this updater function is overloaded and has multiple signatures, at least
     // the two just described here. So far no official docs or tuts found on this. Clarifying it as

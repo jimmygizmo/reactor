@@ -7,12 +7,17 @@ function UseEffectBasic() {
   // const [stateVariable, updaterFunction] = useState(initialValue);  // Example.
   const [resourceType, setResourceType] = useState('posts');
 
-  console.log('UseEffectBasic: rrrrrender')
+  console.log('UseEffectBasic: rrrrrendering')
 
   // By default, useEffect (with only one argument) runs on EVERY render. (But usually the second argument is used.)
   // Second argument to useEffect is an array of objects to WATCH for changes, upon which, triggers Func again.
   useEffect(() => {
     console.log('UseEffectBasic: resourceType changed')
+
+    return () => {
+      console.log('UseEffectBasic: Anon Func returned by useEffect for cleanup was just called.')
+    }
+
   }, [resourceType])
 
   // TRICK: If we pass in an empty WATCH array (second arg) we effectively get an onMount.

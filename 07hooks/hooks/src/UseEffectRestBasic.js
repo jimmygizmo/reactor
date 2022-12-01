@@ -4,7 +4,7 @@ import './index.css';
 
 // Code in this file up through this time marker in the video:
 // https://youtu.be/0ZJgIjIuY7U?list=PLZlA0Gpn_vH8EtggFGERCwMY5u5hOjf-h
-// At this marker, we move on to next file: UseEffect___________.js
+// At this marker, we move on to next file: UseEffectWindow.js
 
 
 function UseEffectRestBasic() {
@@ -36,11 +36,16 @@ function UseEffectRestBasic() {
         <button onClick={() => setResourceType('users')}>Users</button>
         <button onClick={() => setResourceType('comments')}>Comments</button>
         </div>
+
         <h1>{resourceType}</h1>
+
         { items.map((item, idx) => {
-            return <pre key={idx}>{JSON.stringify(item, null, 2)}</pre>
+            return <pre className="item" key={idx}>{
+              JSON.stringify(item, null, 2)}
+            </pre>
           })
         }
+
       </div>
     </>
   );
