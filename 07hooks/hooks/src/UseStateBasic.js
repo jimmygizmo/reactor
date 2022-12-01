@@ -8,56 +8,54 @@ import './index.css';
 
 
 function UseStateBasic() {
-  // const [stateVariable, updaterFunction] = useState(initialValue);  // Example.
-  // const useStateArray = useState(4);  // No. It is much better to destructure.
-  //   const [count, setCount] = useState(4);  // This version runs every render. TODO: Confirm wording.
-  //   const [count, setCount] = useState(test_initialCountValue());  // Show the test. RUNS EVERY TIME.
-    const [count, setCount] = useState(() => {
-        console.log('UseStateBasic: state value initialize inside anon func arg to useState');
-        return 4;
-    });
-    // OBJECTS as state values .. they are REPLACED. (Unlike with classes, where they are merged.)
 
-    // About EXPENSIVE INITIALIZATION - That value 4 is cheap to re-create, but this might need optimization.
-    // This func is just to use temporarily to demonstrate how useState, which normally runs every time,
-    // can be made to effectively run only on first load (can we say first render?) by passing it an
-    // anonymous fuction instead of a value (or expression which evaluates to some value).
-    function test_initialCountValue() {
-        console.log('test_initialCountValue: returning initial value of 4 to useState()')
-        return 4;
-    }
+  const [count, setCount] = useState(() => {
+    console.log('UseStateObject: state value initialized inside anon func arg to useState. EFFICIENT.');
+    return 4;
+  });
 
-    // Example of multiple:
-    // const [age, setAge] = useState(42);
-    // const [fruit, setFruit] = useState('banana');
-    // const [todos, setTodos] = useState([{ text: 'Learn Hooks' }]);
+  // OBJECTS as state values .. they are REPLACED. (Unlike with classes, where they are merged.)
 
-    // function decrementCount() {  // Example of how NOT to do it. This won't work correctly.
-    //     setCountFunc(count - 1);
-    // }
-    // If we are updating a value based on the previous value, we have to do it a different way.
-    function decrementCount() {
-        setCount(prevCount => prevCount - 1);  // Anonymous function which takes the previous value.
-        // I guess the assumption is that internally, useState will call this with the PREVIOUS VALUE.
-        // To me that is critical and clear, but the tutorial doesn't even really mention this point.
-        // React docs hardly touch on updating at all. TODO: Find a good reference about the details of
-        // how useState updates the value.
-        // UPDATE: Kyle said "another version of this function allows you to pass a function instead of
-        // a value. This does clarify. So this update-function provided by useState is overloaded and has
-        // at least two signatures, one accepts a value and one accepts an anoymous function. Maybe we
-        // could say that one accepts an object and one accepts just any function. I'm not sure.
-        // Anyhow, point is, this updater function is overloaded and has multiple signatures, at least
-        // the two just described here. So far no official docs or tuts found on this. Clarifying it as
-        // best I can as I go along. Not a critical topic anyhow. We'll probably use the anon func update a lot.
-        // Might often refer to an existing object (in previous/current state) and pick and choose updates within it,
-        // all within the anonymous func we pass. That seems a likely strategy, but another might be to just use
-        // lots of scalar useState variables when possible. Will have to look up the recommended patterns and use
-        // cases.
-    }
+  // About EXPENSIVE INITIALIZATION - That value 4 is cheap to re-create, but this might need optimization.
+  // This func is just to use temporarily to demonstrate how useState, which normally runs every time,
+  // can be made to effectively run only on first load (can we say first render?) by passing it an
+  // anonymous fuction instead of a value (or expression which evaluates to some value).
+  function test_initialCountValue() {
+    console.log('test_initialCountValue: returning initial value of 4 to useState(). INEFFICIENT.')
+    return 4;
+  }
 
-    function incrementCount() {
-        setCount( prevCount => prevCount + 1);
-    }
+  // Example of multiple:
+  // const [age, setAge] = useState(42);
+  // const [fruit, setFruit] = useState('banana');
+  // const [todos, setTodos] = useState([{ text: 'Learn Hooks' }]);
+
+  // function decrementCount() {  // Example of how NOT to do it. This won't work correctly.
+  //     setCountFunc(count - 1);
+  // }
+  // If we are updating a value based on the previous value, we have to do it a different way.
+  function decrementCount() {
+    setCount(prevCount => prevCount - 1);  // Anonymous function which takes the previous value.
+    // I guess the assumption is that internally, useState will call this with the PREVIOUS VALUE.
+    // To me that is critical and clear, but the tutorial doesn't even really mention this point.
+    // React docs hardly touch on updating at all. TODO: Find a good reference about the details of
+    // how useState updates the value.
+    // UPDATE: Kyle said "another version of this function allows you to pass a function instead of
+    // a value. This does clarify. So this update-function provided by useState is overloaded and has
+    // at least two signatures, one accepts a value and one accepts an anoymous function. Maybe we
+    // could say that one accepts an object and one accepts just any function. I'm not sure.
+    // Anyhow, point is, this updater function is overloaded and has multiple signatures, at least
+    // the two just described here. So far no official docs or tuts found on this. Clarifying it as
+    // best I can as I go along. Not a critical topic anyhow. We'll probably use the anon func update a lot.
+    // Might often refer to an existing object (in previous/current state) and pick and choose updates within it,
+    // all within the anonymous func we pass. That seems a likely strategy, but another might be to just use
+    // lots of scalar useState variables when possible. Will have to look up the recommended patterns and use
+    // cases.
+  }
+
+  function incrementCount() {
+    setCount( prevCount => prevCount + 1);
+  }
 
   return (
     <div className="container">
