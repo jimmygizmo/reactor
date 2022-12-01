@@ -10,8 +10,22 @@ import './index.css';
 function UseStateBasic() {
   // const [stateVariable, updaterFunction] = useState(initialValue);  // Example.
   // const useStateArray = useState(4);  // No. It is much better to destructure.
-    const [count, setCount] = useState(4);
+  //   const [count, setCount] = useState(4);  // This version runs every render. TODO: Confirm wording.
+  //   const [count, setCount] = useState(test_initialCountValue());  // Show the test. RUNS EVERY TIME.
+    const [count, setCount] = useState(() => {
+        console.log('UseStateBasic: state value initialize inside anon func arg to useState');
+        return 4;
+    });
     // OBJECTS as state values .. they are REPLACED. (Unlike with classes, where they are merged.)
+
+    // About EXPENSIVE INITIALIZATION - That value 4 is cheap to re-create, but this might need optimization.
+    // This func is just to use temporarily to demonstrate how useState, which normally runs every time,
+    // can be made to effectively run only on first load (can we say first render?) by passing it an
+    // anonymous fuction instead of a value (or expression which evaluates to some value).
+    function test_initialCountValue() {
+        console.log('test_initialCountValue: returning initial value of 4 to useState()')
+        return 4;
+    }
 
     // Example of multiple:
     // const [age, setAge] = useState(42);
@@ -41,6 +55,10 @@ function UseStateBasic() {
         // cases.
     }
 
+    function incrementCount() {
+        setCount( prevCount => prevCount + 1);
+    }
+
   return (
     <div className="container">
       <h2>UseStateBasic</h2>
@@ -49,7 +67,7 @@ function UseStateBasic() {
       <div>
         <button onClick={decrementCount}>-</button>
         <span>{count}</span>
-        <button onClick={decrementCount}>+</button>
+        <button onClick={incrementCount}>+</button>
       </div>
     </div>
   );
