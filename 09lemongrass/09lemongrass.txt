@@ -1,0 +1,17 @@
+lemongrass is just a name chosen randomly with visions of the beauty of spring and yellow flowers on green fields.
+
+This directory holds a React app with parts put together from earlier tutorials.
+
+The code of interest is inside UseEffectRestBasic.js and is really rudimentary and not production appropriate,
+such that onClick button events simply set string arguments to fill in a mock data api call (typicode) and then dumps
+then return data. That's it.
+I think I did this version as a an sort of counter-example of how it was done long ago and how not to do things now.
+This leads into using React Router and a simple switch to run different component functions that each created different
+data. Then the buttons no longer send parameter-setting click events, rather they are navigation buttons that go to
+react router routes which then trigger the correct code based on the URL.
+
+The context is important here. This is an example of why we want to do things like this with React Router.
+
+TODO: I may have this demo of the better approach using switch in a private repo somewhere. Re-do that demo here
+  in this repo and indicate it goes along with this demo in the 09lemongrass directory.
+
