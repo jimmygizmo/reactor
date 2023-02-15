@@ -8,7 +8,8 @@ import './index.css';
 // import UseEffectBasic from './UseEffectBasic';
 // import UseEffectRestBasic from './UseEffectRestBasic';
 // import UseEffectWindow from './UseEffectWindow';
-import UseMemoBasic from './UseMemoBasic';
+// import UseMemoBasic from './UseMemoBasic';
+import BasicValidatingLoginForm from "./BasicValidatingLoginForm";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -20,7 +21,8 @@ root.render(
     {/*<UseEffectBasic />*/}
     {/*<UseEffectRestBasic />*/}
     {/*<UseEffectWindow />*/}
-    <UseMemoBasic />
+    {/*<UseMemoBasic />*/}
+    <BasicValidatingLoginForm />
   </React.StrictMode>
 );
 
