@@ -9,6 +9,10 @@
     width: 400px;
 }
 
+.label {
+    font-weight: bold;
+}
+
 .row {
     align-items: center;
     display: flex;
